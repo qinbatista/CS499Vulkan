@@ -1,0 +1,17 @@
+{
+  "configurations": [
+    {
+      "name": "macos-clang-arm64",
+      "includePath": [
+        "${workspaceFolder}/**"
+      ],
+      "defines": [],
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "macos-clang-arm64",
+      "configurationProvider": "ms-vscode.makefile-tools",
+      "compilerPath": "/opt/homebrew/opt/llvm/bin/clang"
+    }
+  ],
+  "version": 4
+}
