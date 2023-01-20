@@ -4059,7 +4059,6 @@ VK_EVENT_SET:
 
 		float time = (float)Time;
 		// set the elements of Object, such as uModel, uNormal, uColor, and uShininess here:
-		float time = (float)Time;
 		Object.uModel = glm::mat4(1.); // identity
 		Object.uModel = glm::rotate(Object.uModel, ThetaX.GetValue(time), glm::vec3(1.f, 0.f, 0.f));
 		Object.uModel = glm::rotate(Object.uModel, ThetaY.GetValue(time), glm::vec3(0.f, 1.f, 0.f));
