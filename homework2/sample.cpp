@@ -490,10 +490,9 @@ int main(int argc, char *argv[])
 	{
 		glfwPollEvents();
 		Time = glfwGetTime(); // elapsed time, in double-precision seconds
-
+		Time = fmod(Time, MAXSECONDS);
 		// do this for cyclic animation:
 		// do the fmod thing righ there:
-
 		UpdateScene();
 		RenderScene();
 		if (NeedToExit)
