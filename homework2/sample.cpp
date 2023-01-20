@@ -536,7 +536,7 @@ void InitGraphics()
 	Init05UniformBuffer(sizeof(Object), &MyObjectUniformBuffer);
 	Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
 
-	MyVertexDataBuffer = VkuLoadObjFile((char *)"cow.obj");
+	MyVertexDataBuffer = VkuLoadObjFile((char *)"bunny010n.obj");
 
 	// Init05MyVertexDataBuffer(  sizeof(VertexData), &MyVertexDataBuffer );
 	// Fill05DataBuffer( MyVertexDataBuffer,			(void *) VertexData );
