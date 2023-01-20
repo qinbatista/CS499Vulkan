@@ -572,10 +572,15 @@ void InitGraphics()
 
 	// Here is where you list all the time-value pairs for everything you want to animate:
 	ScaleXYZ.AddTimeValue(0.f, 1.f);
-	ScaleXYZ.AddTimeValue(7.5f, 0.25f);
-	ScaleXYZ.AddTimeValue(15.f, 1.f);
-	ScaleXYZ.AddTimeValue(22.5f, 2.f);
-	ScaleXYZ.AddTimeValue(30.f, 1.f);
+
+	ScaleXYZ.AddTimeValue(1.f, 2.2f);
+	ScaleXYZ.AddTimeValue(1.1f, 2.f);
+
+	ScaleXYZ.AddTimeValue(3.0f, 3.2f);
+	ScaleXYZ.AddTimeValue(3.1f, 3.f);
+
+	ScaleXYZ.AddTimeValue(5.0f, 4.2f);
+	ScaleXYZ.AddTimeValue(5.1f, 4.f);
 
 	ThetaX.AddTimeValue(0.0f, 0.0f);
 	ThetaX.AddTimeValue(5.f, glm::radians(720.f));
