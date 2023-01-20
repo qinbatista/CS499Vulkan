@@ -585,14 +585,18 @@ void InitGraphics()
 	//ThetaX.AddTimeValue(0.0f, glm::radians(0.f));
 	ThetaX.AddTimeValue(7.1f, glm::radians(0.f));
 	ThetaX.AddTimeValue(10.1f, glm::radians(360.f));
-	ThetaX.AddTimeValue(13.1f, glm::radians(-360.f));
+	ThetaX.AddTimeValue(13.1f, glm::radians(0.f));
 	//ThetaX.AddTimeValue(10.f, glm::radians(0.f));
 	//ThetaX.AddTimeValue(20.f, glm::radians(-720.f));
 	//ThetaX.AddTimeValue(30.f, glm::radians(0.f));
 	ThetaY.AddTimeValue(13.1f, glm::radians(0.f));
 	ThetaY.AddTimeValue(16.1f, glm::radians(360.f));
-	ThetaY.AddTimeValue(19.1f, glm::radians(-360.f));
+	ThetaY.AddTimeValue(19.1f, glm::radians(0.f));
 	//ThetaY.AddTimeValue(30.f, glm::radians(10.f * 360.f + 180.f));
+
+	Xpos.AddTimeValue(19.1f, 0.f);
+	Xpos.AddTimeValue(20.1f, 1.f);
+	Xpos.AddTimeValue(21.1f, 0.f);
 }
 
 // **********************
@@ -4071,6 +4075,7 @@ VK_EVENT_SET:
 		Object.uModel = glm::rotate(Object.uModel, ThetaX.GetValue(time), glm::vec3(1.f, 0.f, 0.f));
 		Object.uModel = glm::rotate(Object.uModel, ThetaY.GetValue(time), glm::vec3(0.f, 1.f, 0.f));
 		Object.uModel = glm::scale(Object.uModel, glm::vec3(ScaleXYZ.GetValue(time)));
+		Object.uModel = glm::translate(Object.uModel, glm::vec3(Xpos.GetValue(time)));
 
 		Object.uNormal = glm::mat4(glm::inverseTranspose(glm::mat3(Scene.uSceneOrient * Object.uModel)));
 		Object.uColor = glm::vec4(1.f, 0.2f, 0.2f, 1.f);
