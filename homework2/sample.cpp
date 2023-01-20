@@ -4059,7 +4059,17 @@ VK_EVENT_SET:
 
 		float time = (float)Time;
 		// set the elements of Object, such as uModel, uNormal, uColor, and uShininess here:
+		float time = (float)Time;
+		Object.uModel = glm::mat4(1.); // identity
+		Object.uModel = glm::rotate(Object.uModel, ThetaX.GetValue(time), glm::vec3(1.f, 0.f, 0.f));
+		Object.uModel = glm::rotate(Object.uModel, ThetaY.GetValue(time), glm::vec3(0.f, 1.f, 0.f));
+		Object.uModel = glm::scale(Object.uModel, glm::vec3(ScaleXYZ.GetValue(time)));
 
+		Object.uNormal = glm::mat4(glm::inverseTranspose(glm::mat3(Scene.uSceneOrient * Object.uModel)));
+		Object.uColor = glm::vec4(1.f, 0.2f, 0.2f, 1.f);
+		Object.uShininess = 32.f;
+
+		Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
 		Fill05DataBuffer(MyObjectUniformBuffer, IN(void *) & Object);
 	}
 
