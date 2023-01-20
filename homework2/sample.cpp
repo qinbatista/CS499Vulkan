@@ -573,23 +573,26 @@ void InitGraphics()
 	// Here is where you list all the time-value pairs for everything you want to animate:
 	ScaleXYZ.AddTimeValue(0.f, 1.f);
 
-	ScaleXYZ.AddTimeValue(1.f, 2.2f);
-	ScaleXYZ.AddTimeValue(1.1f, 2.f);
+	ScaleXYZ.AddTimeValue(5.f, 1.6f);
+	ScaleXYZ.AddTimeValue(5.1f, 1.5f);
 
-	ScaleXYZ.AddTimeValue(3.0f, 3.2f);
-	ScaleXYZ.AddTimeValue(3.1f, 3.f);
+	ScaleXYZ.AddTimeValue(6.0f, 1.7f);
+	ScaleXYZ.AddTimeValue(6.1f, 1.6f);
 
-	ScaleXYZ.AddTimeValue(5.0f, 4.2f);
-	ScaleXYZ.AddTimeValue(5.1f, 4.f);
+	ScaleXYZ.AddTimeValue(7.0f, 1.8f);
+	ScaleXYZ.AddTimeValue(7.1f, 1.7f);
 
-	ThetaX.AddTimeValue(0.0f, 0.0f);
-	ThetaX.AddTimeValue(5.f, glm::radians(720.f));
-	ThetaX.AddTimeValue(10.f, glm::radians(0.f));
-	ThetaX.AddTimeValue(20.f, glm::radians(-720.f));
-	ThetaX.AddTimeValue(30.f, glm::radians(0.f));
-
-	ThetaY.AddTimeValue(0.0f, 0.0f);
-	ThetaY.AddTimeValue(30.f, glm::radians(10.f * 360.f + 180.f));
+	//ThetaX.AddTimeValue(0.0f, glm::radians(0.f));
+	ThetaX.AddTimeValue(7.1f, glm::radians(0.f));
+	ThetaX.AddTimeValue(10.1f, glm::radians(360.f));
+	ThetaX.AddTimeValue(13.1f, glm::radians(-360.f));
+	//ThetaX.AddTimeValue(10.f, glm::radians(0.f));
+	//ThetaX.AddTimeValue(20.f, glm::radians(-720.f));
+	//ThetaX.AddTimeValue(30.f, glm::radians(0.f));
+	ThetaY.AddTimeValue(13.1f, glm::radians(0.f));
+	ThetaY.AddTimeValue(16.1f, glm::radians(360.f));
+	ThetaY.AddTimeValue(19.1f, glm::radians(-360.f));
+	//ThetaY.AddTimeValue(30.f, glm::radians(10.f * 360.f + 180.f));
 }
 
 // **********************
