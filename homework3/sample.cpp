@@ -3892,7 +3892,6 @@ VK_EVENT_SET:
 
         const uint32_t vertexCount = sizeof(VertexData) / sizeof(VertexData[0]);
         const uint32_t indexCount = sizeof(JustIndexData) / sizeof(JustIndexData[0]);
-        // const uint32_t instanceCount = 1;
         const uint32_t instanceCount = 1;
         const uint32_t firstVertex = 0;
         const uint32_t firstIndex = 0;
@@ -4097,8 +4096,8 @@ VK_EVENT_SET:
 
         Object.uModel = glm::mat4(1.);
         Object.uNormal = glm::mat4(glm::inverseTranspose(glm::mat3(Scene.uSceneOrient * Object.uModel)));
-        // Object.uColor = glm::vec4( 0., 1., 0., 1. );
-        // Object.uShininess = 10.f;
+        Object.uColor = glm::vec4( 0., 1., 0., 1. );
+        Object.uShininess = 10.f;
         Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
     }
 
