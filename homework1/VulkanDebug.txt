@@ -1,4 +1,4 @@
-FpDebug: Width = 1536 ; Height = 1536
+FpDebug: Width = 1024 ; Height = 1024
 
 ***** InitGraphics *****
 
@@ -199,11 +199,11 @@ vkAllocateCommandBuffers - 2: Successful
 vkCreateSampler: Successful
 
 ***** Init07TextureBufferAndFillFromBmpFile *****
-Image size found: 1488 x 1484
+Image size found: 4032 x 3024
 
 ***** Init07TextureBuffer *****
 vkCreateImage: Successful
-Image vmr.size = 8832768
+Image vmr.size = 48771072
 Image vmr.alignment = 32
 Image vmr.memoryTypeBits = 0x00000681
 
@@ -212,12 +212,12 @@ vkAllocateMemory: Successful
 vkBindImageMemory: Successful
 Subresource Layout:
 	offset = 0
-	size = 8832768
-	rowPitch = 5952
-	arrayPitch = 8832768
-	depthPitch = 8832768
+	size = 48771072
+	rowPitch = 16128
+	arrayPitch = 48771072
+	depthPitch = 48771072
 vkCreateImage: Successful
-Texture vmr.size = 9142272
+Texture vmr.size = 49545216
 Texture vmr.alignment = 1024
 Texture vmr.memoryTypeBits = 0x00000102
 
@@ -235,9 +235,9 @@ Init07TextureBuffer: Successful
 
 vkGetPhysicalDeviceSurfaceCapabilitiesKHR:
 	minImageCount = 2 ; maxImageCount = 8
-	currentExtent = 1536 x 1181
-	minImageExtent = 1536 x 1181
-	maxImageExtent = 1536 x 1181
+	currentExtent = 1024 x 1024
+	minImageExtent = 1024 x 1024
+	maxImageExtent = 1024 x 1024
 	maxImageArrayLayers = 1
 	supportedTransforms = 0x0001
 	currentTransform = 0x0001
@@ -315,3 +315,11 @@ vkWaitForFences: Successful
 vkQueuePresentKHR: Successful
 Mouse button = 0; Action = 1
 Mouse button = 0; Action = 0
+Mouse button = 0; Action = 1
+Mouse button = 0; Action = 0
+Mouse button = 0; Action = 1
+Mouse button = 0; Action = 0
+Mouse button = 0; Action = 1
+Mouse button = 0; Action = 0
+Closing the GLFW window
+vkWaitIdle: Successful

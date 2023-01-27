@@ -490,8 +490,8 @@ short				ReadShort( FILE * );
 int
 main( int argc, char * argv[ ] )
 {
-	Width  = 1536;
-	Height = 1536;
+	Width  = 1024;
+	Height = 1024;
 
 #ifdef _WIN32
 	errno_t err = fopen_s( &FpDebug, DEBUGFILE, "w" );
@@ -578,7 +578,7 @@ InitGraphics( )
 	Init06CommandBuffers();
 
 	Init07TextureSampler( &MyPuppyTexture );
-	Init07TextureBufferAndFillFromBmpFile("puppy1.bmp", &MyPuppyTexture);
+	Init07TextureBufferAndFillFromBmpFile("IMG_0937.bmp", &MyPuppyTexture);
 
 	Init08Swapchain( );
 
