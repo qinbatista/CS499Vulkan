@@ -68,7 +68,7 @@
 
 #ifndef _WIN32
 typedef int errno_t;
-int	fopen_s( FILE**, const char *, const char * ); 
+int	fopen_s( FILE**, const char *, const char * );
 #endif
 
 #define GLFW_INCLUDE_VULKAN
@@ -278,7 +278,7 @@ struct sceneBuf
 	glm::mat4	uProjection;
 	glm::mat4	uView;
 	glm::mat4	uSceneOrient;
-	glm::vec4	uLightPos; 
+	glm::vec4	uLightPos;
 	glm::vec4	uLightColor;
 	glm::vec4	uLightKaKdKs;
 	float		uTime;
@@ -352,7 +352,7 @@ VkImage *			PresentImages;
 VkImageView *			PresentImageViews;	// the swap chain image views
 VkQueue				Queue;
 VkRect2D			RenderArea;
-VkRenderPass			RenderPass; 
+VkRenderPass			RenderPass;
 VkSemaphore			SemaphoreImageAvailable;
 VkSemaphore			SemaphoreRenderFinished;
 VkShaderModule			ShaderModuleFragment;
@@ -769,7 +769,7 @@ Init01Instance( )
 			fprintf( FpDebug, "\t%s\n", extensionsWantedAndAvailable[i] );
 		}
 	}
-	
+
 
 	// create the instance, asking for the layers and extensions:
 
@@ -783,7 +783,7 @@ Init01Instance( )
 		vici.enabledExtensionCount   = (uint32_t) extensionsWantedAndAvailable.size( );
 		vici.ppEnabledExtensionNames = extensionsWantedAndAvailable.data( );
 
-	
+
 	result = vkCreateInstance( IN &vici, PALLOCATOR, OUT &Instance );
 	REPORT( "vkCreateInstance" );
 	return result;
@@ -799,7 +799,7 @@ VkResult
 Init02CreateDebugCallbacks( )
 {
 	HERE_I_AM( "Init02CreateDebugCallbacks" );
-	
+
 	VkResult result = VK_SUCCESS;
 
 #ifdef NOTDEF
@@ -871,7 +871,7 @@ Init03PhysicalDeviceAndGetQueueFamilyProperties( )
 
 	VkResult result = VK_SUCCESS;
 
-	result = vkEnumeratePhysicalDevices( Instance, OUT &PhysicalDeviceCount, (VkPhysicalDevice *)nullptr ); 
+	result = vkEnumeratePhysicalDevices( Instance, OUT &PhysicalDeviceCount, (VkPhysicalDevice *)nullptr );
 	REPORT( "vkEnumeratePhysicalDevices - 1" );
 	if( result != VK_SUCCESS || PhysicalDeviceCount <= 0 )
 	{
@@ -1205,9 +1205,9 @@ Init04LogicalDeviceAndQueue( )
 	result = vkCreateLogicalDevice( PhysicalDevice, IN &vdci, PALLOCATOR, OUT &LogicalDevice );
 	REPORT( "vkCreateLogicalDevice" );
 
-	
+
 	// get the queue for this logical device:
-	
+
 	vkGetDeviceQueue( LogicalDevice, 0, 0,  OUT &Queue );
 				// queueFamilyIndex, queueIndex
 	return result;
@@ -1360,7 +1360,7 @@ Init07TextureSampler( MyTexture * pMyTexture )
 	HERE_I_AM( "Init07TextureSampler" );
 
 	VkResult result = VK_SUCCESS;
-	
+
 	VkSamplerCreateInfo					vsci;
 		vsci.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
 		vsci.pNext = nullptr;
@@ -1639,7 +1639,7 @@ VK_IMAGE_LAYOUT_PREINITIALIZED
 			visr.levelCount = 1;
 			visr.baseArrayLayer = 0;
 			visr.layerCount = 1;
-			
+
 		VkImageMemoryBarrier			vimb;
 			vimb.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
 			vimb.pNext = nullptr;
@@ -2118,7 +2118,7 @@ VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR = 1000111001,
 	{
 		fprintf( FpDebug, "The Present Mode to use = %d\n", thePresentMode );
 	}
-	
+
 	delete [ ] presentModes;
 
 
@@ -2149,13 +2149,13 @@ surfaceRes.height;
 		vscci.presentMode = thePresentMode;
 		vscci.oldSwapchain = (VkSwapchainKHR) 0;	// we're not replacing an old swapchain
 		vscci.clipped = VK_TRUE;
-	
+
 	result = vkCreateSwapchainKHR( LogicalDevice, IN &vscci, PALLOCATOR, OUT &SwapChain );
 	REPORT( "vkCreateSwapchainKHR" );
 
 
 	uint32_t imageCount;
-	result = vkGetSwapchainImagesKHR( LogicalDevice, IN SwapChain, OUT &imageCount, (VkImage *)nullptr );	// 0 
+	result = vkGetSwapchainImagesKHR( LogicalDevice, IN SwapChain, OUT &imageCount, (VkImage *)nullptr );	// 0
 	REPORT( "vkGetSwapchainImagesKHR - 0" );
 	if( imageCount != 2 )
 	{
@@ -2164,7 +2164,7 @@ surfaceRes.height;
 	}
 
 	PresentImages = new VkImage[ imageCount ];
-	result = vkGetSwapchainImagesKHR( LogicalDevice, SwapChain, OUT &imageCount, PresentImages );	// 0 
+	result = vkGetSwapchainImagesKHR( LogicalDevice, SwapChain, OUT &imageCount, PresentImages );	// 0
 	REPORT( "vkGetSwapchainImagesKHR - 1" );
 
 
@@ -2208,9 +2208,9 @@ VkResult
 Init09DepthStencilImage( )
 {
 	HERE_I_AM( "Init09DepthStencilImage" );
-	
+
 	VkResult result = VK_SUCCESS;
-	
+
 	VkExtent3D ve3d = { Width, Height, 1 };
 
 	VkImageCreateInfo			vici;
@@ -2727,7 +2727,7 @@ VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT
 
 //************************P4
 	VkDescriptorSetLayoutCreateInfo			vdslc4;
-		vdslc4.sType = ?? what type of structure is this ??
+		vdslc4.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
 		vdslc4.pNext = nullptr;
 		vdslc4.flags = 0;
 		vdslc4.bindingCount = 1;
@@ -2938,7 +2938,7 @@ struct sceneBuf
 	glm::mat4	uProjection;
 	glm::mat4	uView;
 	glm::mat4	uSceneOrient;
-	vec4		uLightPos; 
+	vec4		uLightPos;
 	vec4		uLightColor;
 	vec4		uLightKaKdKs;
 	float		uTime;
@@ -3032,7 +3032,7 @@ VK_SHADER_STAGE_ALL
 
 	VkVertexInputBindingDescription			vvibd[1];	// an array containing one of these per buffer being used
 		vvibd[0].binding = 0;		// which binding # this is
-		vvibd[0].stride = sizeof( struct vertex );		// bytes between successive 
+		vvibd[0].stride = sizeof( struct vertex );		// bytes between successive
 		vvibd[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
 #ifdef CHOICES
 VK_VERTEX_INPUT_RATE_VERTEX
@@ -3974,7 +3974,7 @@ RenderScene( )
 	NumRenders++;
 	if (NumRenders <= 2)
 		HERE_I_AM( "RenderScene" );
-	
+
 	VkResult result = VK_SUCCESS;
 
 	VkSemaphoreCreateInfo			vsci;
@@ -4055,7 +4055,7 @@ RenderScene( )
 	vkCmdSetScissor( CommandBuffers[nextImageIndex], 0, 1, &scissor );
 #endif
 
-	
+
 //************************P4
 	vkCmdBindDescriptorSets( CommandBuffers[nextImageIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, GraphicsPipelineLayout, 0, NUMDS, DescriptorSets, 0, (uint32_t *)nullptr );
 //************************P4
@@ -4362,7 +4362,7 @@ GLFWKeyboard( GLFWwindow * window, int key, int scancode, int action, int mods )
 	if( action == GLFW_PRESS )
 	{
 		//fprintf(stderr, "key = 0x%04x = '%c'\n", key, key );
-		
+
 		switch (key)
 		{
 			case 'i':
@@ -4402,7 +4402,7 @@ GLFWKeyboard( GLFWwindow * window, int key, int scancode, int action, int mods )
 			case 'R':
 				UseRotate = ! UseRotate;
 				break;
-		
+
 			case 'v':
 			case 'V':
 				Verbose = ! Verbose;
@@ -4428,7 +4428,7 @@ GLFWMouseButton( GLFWwindow *window, int button, int action, int mods )
 
 	int b = 0;		// LEFT, MIDDLE, or RIGHT
 
-	
+
 	// get the proper button bit mask:
 
 	switch( button )

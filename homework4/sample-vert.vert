@@ -11,7 +11,7 @@ layout( std140, set = 0, binding = 0 ) uniform sporadicBuf
 	int		uUseLighting;
 	int		uNumInstances;
 } Sporadic;
-        
+
 layout( std140, set = 1, binding = 0 ) uniform sceneBuf
 {
 	mat4		uProjection;
@@ -29,7 +29,7 @@ layout( std140, set = 2, binding = 0 ) uniform objectBuf
 	mat4		uNormal;
 	vec4		uColor;
 	float		uShininess;
-} Object; 
+} Object;
 
 
 //************************P4
@@ -59,7 +59,7 @@ layout ( location = 4 ) out vec3 vE;
 
 
 void
-main( ) 
+main( )
 {
 	mat4  P = Scene.uProjection;
 	mat4  V = Scene.uView;
@@ -88,22 +88,22 @@ main( )
 
 	if( atomicNumber == 1 )
 	{
-		?
-		?
+		radius = 0.75;
+		vColor = vec3( 1., 1., 1. );
 	} else if( atomicNumber == 6 )
 	{
-		?
-		?
+		radius = 0.75;
+		vColor = vec3( 0., 1., 0. );
 	}
 	else if( atomicNumber == 7 )
 	{
-		?
-		?
+		radius = 0.75;
+		vColor = vec3( 0., 0., 1. );
 	}
 	else if( atomicNumber == 8 )
 	{
-		?
-		?
+		radius = 0.75;
+		vColor = vec3( 1., 0., 0. );
 	}
 	else
 	{
