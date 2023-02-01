@@ -2676,9 +2676,9 @@ Init13DescriptorSetLayouts( )
 	//DS #4:
 	VkDescriptorSetLayoutBinding		AtomsSet[1];
 		AtomsSet[0].binding            = 0;
-		AtomsSet[0].descriptorType     = ?? what type of buffer does this need to be ??
+		AtomsSet[0].descriptorType     = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
 		AtomsSet[0].descriptorCount    = 1;
-		AtomsSet[0].stageFlags         = ?? what type of buffer does this need to be ??
+		AtomsSet[0].stageFlags         = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
 		AtomsSet[0].pImmutableSamplers = (VkSampler *)nullptr;
 //************************P4
 
