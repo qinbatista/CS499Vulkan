@@ -2678,7 +2678,7 @@ Init13DescriptorSetLayouts( )
 		AtomsSet[0].binding            = 0;
 		AtomsSet[0].descriptorType     = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
 		AtomsSet[0].descriptorCount    = 1;
-		AtomsSet[0].stageFlags         = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
+		AtomsSet[0].stageFlags         = VK_SHADER_STAGE_VERTEX_BIT;
 		AtomsSet[0].pImmutableSamplers = (VkSampler *)nullptr;
 //************************P4
 
