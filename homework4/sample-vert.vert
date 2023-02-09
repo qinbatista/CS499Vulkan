@@ -71,32 +71,31 @@ void main() {
     vE = normalize(eyePos.xyz - ECposition.xyz);         // vector from the point to the eye
 
 //************************P4
-    for(int i = 0; i < 24; i++) {
-        int atomicNumber = atoms[0].atomicNumber;
-        vec3 position = atoms[0].position;
-        float radius;
 
-        if(atomicNumber == 1) {
-            radius = 0.75;
-            vColor = vec3(1., 1., 1.);
-        } else if(atomicNumber == 6) {
-            radius = 0.75;
-            vColor = vec3(0., 1., 0.);
-        } else if(atomicNumber == 7) {
-            radius = 0.75;
-            vColor = vec3(0., 0., 1.);
-        } else if(atomicNumber == 8) {
-            radius = 0.75;
-            vColor = vec3(1., 0., 0.);
-        } else {
-            radius = 0.75;
-            vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
-        }
+    int atomicNumber = atoms[0].atomicNumber;
+    vec3 position = atoms[0].position;
+    float radius;
 
-        vec3 bVertex = aVertex;
-        bVertex.xyz *= radius;
-        bVertex.xyz += position;
-        gl_Position = PVM * vec4(bVertex, 1.);
+    if(atomicNumber == 1) {
+        radius = 0.75;
+        vColor = vec3(1., 1., 1.);
+    } else if(atomicNumber == 6) {
+        radius = 0.75;
+        vColor = vec3(0., 1., 0.);
+    } else if(atomicNumber == 7) {
+        radius = 0.75;
+        vColor = vec3(0., 0., 1.);
+    } else if(atomicNumber == 8) {
+        radius = 0.75;
+        vColor = vec3(1., 0., 0.);
+    } else {
+        radius = 0.75;
+        vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
     }
+
+    vec3 bVertex = aVertex;
+    bVertex.xyz *= radius;
+    bVertex.xyz += position;
+    gl_Position = PVM * vec4(bVertex, 1.);
 //************************P4
 }
