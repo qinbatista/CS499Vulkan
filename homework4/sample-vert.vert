@@ -82,33 +82,33 @@ main( )
 
 
 //************************P4
-	int atomicNumber = 0;
-	vec3 position = 0;
+	int atomicNumber = atoms[0].atomicNumber;
+	vec3 position = atoms[0].position;
 	float radius;
 
 	if( atomicNumber == 1 )
 	{
-		// radius = 0.75;
-		// vColor = vec3( 1., 1., 1. );
+		radius = 0.75;
+		vColor = vec3( 1., 1., 1. );
 	} else if( atomicNumber == 6 )
 	{
-		// radius = 0.75;
-		// vColor = vec3( 0., 1., 0. );
+		radius = 0.75;
+		vColor = vec3( 0., 1., 0. );
 	}
 	else if( atomicNumber == 7 )
 	{
-		// radius = 0.75;
-		// vColor = vec3( 0., 0., 1. );
+		radius = 0.75;
+		vColor = vec3( 0., 0., 1. );
 	}
 	else if( atomicNumber == 8 )
 	{
-		// radius = 0.75;
-		// vColor = vec3( 1., 0., 0. );
+		radius = 0.75;
+		vColor = vec3( 1., 0., 0. );
 	}
 	else
 	{
-		// radius = 0.75;
-		// vColor = vec3( 1., 0., 1. );	// big magenta ball to tell us something is wrong
+		radius = 0.75;
+		vColor = vec3( 1., 0., 1. );	// big magenta ball to tell us something is wrong
 	}
 
 	vec3 bVertex = aVertex;
