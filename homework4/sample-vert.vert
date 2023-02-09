@@ -82,8 +82,8 @@ main( )
 
 
 //************************P4
-	int atomicNumber = atoms[?].atomicNumber;
-	vec3 position = atoms[?].position;
+	int atomicNumber = atoms[0].atomicNumber;
+	vec3 position = atoms[0].position;
 	float radius;
 
 	if( atomicNumber == 1 )
