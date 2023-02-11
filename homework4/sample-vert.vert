@@ -74,9 +74,9 @@ vE = normalize(eyePos.xyz - ECposition.xyz);         // vector from the point to
 
 //************************P4
 
-int atomicNumber = atoms[0].atomicNumber;
-vec3 position = atoms[0].position;
-float radius = atoms[0].atomicRadius;
+int atomicNumber = atoms[gl_InstanceIndex].atomicNumber;
+vec3 position = atoms[gl_InstanceIndex].position;
+float radius = atoms[gl_InstanceIndex].atomicRadius;
 
 if(atomicNumber == 1) {
 vColor = vec3(1., 1., 1.);
