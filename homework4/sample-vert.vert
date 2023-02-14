@@ -30,10 +30,9 @@ layout(std140, set = 2, binding = 0) uniform objectBuf {
 
 //************************P4
 struct atom {
-glm : : vec3 position;
+vec3 position;
 int atomicNumber;
 int atomicRadius;
-int index;
 };
 
 layout(std140, set = 4, binding = 0) uniform moleculeBuf {
