@@ -76,14 +76,19 @@ void main() {
     float radius;
     if(atomicNumber == 1) {
         vColor = vec3(1., 1., 1.);
+        radius = 0.37;
     } else if(atomicNumber == 6) {
         vColor = vec3(0., 1., 0.);
+        radius = 0.77;
     } else if(atomicNumber == 7) {
         vColor = vec3(0., 0., 1.);
+        radius = 0.70;
     } else if(atomicNumber == 8) {
         vColor = vec3(1., 0., 0.);
+        radius = 0.66;
     } else {
         vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
+        radius = 1.0;
     }
 
     vec3 bVertex = aVertex;
