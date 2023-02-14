@@ -77,27 +77,22 @@ void main() {
     if(atomicNumber == 1) {
         vColor = vec3(1., 1., 1.);
         radius = 0.37;
-        Object.uModel = Object.uModel*0.5f;
     } else if(atomicNumber == 6) {
         vColor = vec3(0., 1., 0.);
         radius = 0.77;
-        Object.uModel = Object.uModel*0.5f;
     } else if(atomicNumber == 7) {
         vColor = vec3(0., 0., 1.);
         radius = 0.70;
-        Object.uModel = Object.uModel*0.5f;
     } else if(atomicNumber == 8) {
         vColor = vec3(1., 0., 0.);
         radius = 0.66;
-        Object.uModel = Object.uModel*0.5f;
     } else {
         vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
         radius = 1.0;
-        Object.uModel = Object.uModel*0.5f;
     }
 
     vec3 bVertex = aVertex;
-    bVertex.xyz *= radius;
+    bVertex.xyz *= 0.5*radius;
     bVertex.xyz += position;
     gl_Position = PVM * vec4(bVertex, 1.);
 //************************P4
