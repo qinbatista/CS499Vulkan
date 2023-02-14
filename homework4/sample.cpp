@@ -4137,10 +4137,10 @@ VK_EVENT_SET:
 
         // possibly change the light position:
 
-        Scene.uKaKdKs = glm::vec3( 0.2f, 0.4f, 0.4f );
-        Scene.uEyePos = glm::vec4( eye, 1. );
-        Scene.uLightPos = glm::vec4( 10., 10., 10., 1. );
-        Scene.uLightColor = glm::vec3( 1., 1., 1. );
+        // Scene.uKaKdKs = glm::vec3( 0.2f, 0.4f, 0.4f );
+        // Scene.uEyePos = glm::vec4( eye, 1. );
+        // Scene.uLightPos = glm::vec4( 10., 10., 10., 1. );
+        // Scene.uLightColor = glm::vec3( 1., 1., 1. );
 
         Fill05DataBuffer(MySceneUniformBuffer, (void *)&Scene);
 
