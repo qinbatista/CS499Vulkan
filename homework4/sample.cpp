@@ -4137,10 +4137,10 @@ VK_EVENT_SET:
 
         // possibly change the light position:
 
-        // Scene.uKaKdKs = glm::vec3( 0.2f, 0.4f, 0.4f );
-        // Scene.uEyePos = glm::vec4( eye, 1. );
-        // Scene.uLightPos = glm::vec4( 10., 10., 10., 1. );
-        // Scene.uLightColor = glm::vec3( 1., 1., 1. );
+        Scene.uKaKdKs = glm::vec3( 0.2f, 0.4f, 0.4f );
+        Scene.uEyePos = glm::vec4( eye, 1. );
+        Scene.uLightPos = glm::vec4( 10., 10., 10., 1. );
+        Scene.uLightColor = glm::vec3( 1., 1., 1. );
 
         Fill05DataBuffer(MySceneUniformBuffer, (void *)&Scene);
 
@@ -4148,8 +4148,8 @@ VK_EVENT_SET:
 
         Object.uModel = glm::mat4(1.);
         Object.uNormal = glm::mat4(glm::inverseTranspose(glm::mat3(Scene.uSceneOrient * Object.uModel)));
-        // Object.uColor = glm::vec4( 0., 1., 0., 1. );
-        // Object.uShininess = 10.f;
+        Object.uColor = glm::vec4( 0., 1., 0., 1. );
+        Object.uShininess = 10.f;
         Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
     }
 
