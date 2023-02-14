@@ -92,8 +92,8 @@ void main() {
     }
 
     vec3 bVertex = aVertex;
-    bVertex.xyz = radius;
-    bVertex.xyz = position;
+    bVertex.xyz *= radius;
+    bVertex.xyz += position;
     gl_Position = PVM * vec4(bVertex, 1.);
 //************************P4
 }
