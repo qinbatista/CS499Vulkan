@@ -30,13 +30,12 @@ layout(std140, set = 2, binding = 0) uniform objectBuf {
 
 //************************P4
 struct atom {
-vec3 position;
-int atomicNumber;
-int atomicRadius;
+    vec3 position;
+    int atomicNumber;
 };
 
 layout(std140, set = 4, binding = 0) uniform moleculeBuf {
-atom atoms[24];
+    atom atoms[24];
 };
 //************************P4
 
@@ -52,46 +51,44 @@ layout(location = 3) out vec3 vL;
 layout(location = 4) out vec3 vE;
 
 void main() {
-mat4 P = Scene.uProjection;
-mat4 V = Scene.uView;
-mat4 SO = Scene.uSceneOrient;
-mat4 M = Object.uModel;
-mat4 VM = V * SO * M;
-mat4 PVM = P * VM;
+    mat4 P = Scene.uProjection;
+    mat4 V = Scene.uView;
+    mat4 SO = Scene.uSceneOrient;
+    mat4 M = Object.uModel;
+    mat4 VM = V * SO * M;
+    mat4 PVM = P * VM;
 
-vColor = aColor;
-vTexCoord = aTexCoord;
+    vColor = aColor;
+    vTexCoord = aTexCoord;
 
-vN = normalize(mat3(Object.uNormal) * aNormal);		// surface normal vector
+    vN = normalize(mat3(Object.uNormal) * aNormal);		// surface normal vector
 
-vec4 ECposition = VM * vec4(aVertex, 1.);
-vec4 lightPos = vec4(Scene.uLightPos.xyz, 1.);        // light source in fixed location because not transformed
-vL = normalize(lightPos.xyz - ECposition.xyz);      // vector from the point to the light
+    vec4 ECposition = VM * vec4(aVertex, 1.);
+    vec4 lightPos = vec4(Scene.uLightPos.xyz, 1.);        // light source in fixed location because not transformed
+    vL = normalize(lightPos.xyz - ECposition.xyz);      // vector from the point to the light
 
-vec4 eyePos = vec4(0., 0., 0., 1.);					// eye position after applying the viewing matrix
-vE = normalize(eyePos.xyz - ECposition.xyz);         // vector from the point to the eye
+    vec4 eyePos = vec4(0., 0., 0., 1.);					// eye position after applying the viewing matrix
+    vE = normalize(eyePos.xyz - ECposition.xyz);         // vector from the point to the eye
 
 //************************P4
+    int atomicNumber = atoms[gl_InstanceIndex].atomicNumber;
+    vec3 position = atoms[gl_InstanceIndex].position;
+    float radius;
+    if(atomicNumber == 1) {
+        vColor = vec3(1., 1., 1.);
+    } else if(atomicNumber == 6) {
+        vColor = vec3(0., 1., 0.);
+    } else if(atomicNumber == 7) {
+        vColor = vec3(0., 0., 1.);
+    } else if(atomicNumber == 8) {
+        vColor = vec3(1., 0., 0.);
+    } else {
+        vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
+    }
 
-int atomicNumber = atoms[gl_InstanceIndex].atomicNumber;
-vec3 position = atoms[gl_InstanceIndex].position;
-float radius = atoms[gl_InstanceIndex].atomicRadius;
-
-if(atomicNumber == 1) {
-vColor = vec3(1., 1., 1.);
-} else if(atomicNumber == 6) {
-vColor = vec3(0., 1., 0.);
-} else if(atomicNumber == 7) {
-vColor = vec3(0., 0., 1.);
-} else if(atomicNumber == 8) {
-vColor = vec3(1., 0., 0.);
-} else {
-vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
-}
-
-vec3 bVertex = aVertex;
-bVertex.xyz *= radius;
-bVertex.xyz += position;
-gl_Position = PVM * vec4(bVertex, 1.);
+    vec3 bVertex = aVertex;
+    bVertex.xyz *= radius;
+    bVertex.xyz += position;
+    gl_Position = PVM * vec4(bVertex, 1.);
 //************************P4
 }
