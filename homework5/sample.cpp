@@ -4148,8 +4148,8 @@ VK_EVENT_SET:
 
         Object.uModel = glm::mat4(1.);
         Object.uNormal = glm::mat4(glm::inverseTranspose(glm::mat3(Scene.uSceneOrient * Object.uModel)));
-        // Object.uColor = glm::vec4( 0., 1., 0., 1. );
-        // Object.uShininess = 10.f;
+        Object.uColor = glm::vec4( 0., 1., 0., 1. );
+        Object.uShininess = 10.f;
         Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
     }
 
