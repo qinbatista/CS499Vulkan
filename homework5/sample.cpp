@@ -4139,30 +4139,7 @@ VK_EVENT_SET:
         Fill05DataBuffer(MyAtomsUniformBuffer, (void *)&Atoms);
         //************************P4
 
-        //************************P5
-        float rot1 = (float)(2. * M_PI * Time);
-        float rot2 = 2.f * rot1;
-        float rot3 = 2.f * rot2;
-        glm::vec3 zaxis = glm::vec3(0., 0., 1.);
 
-        glm::mat4 m1g = glm::mat4(1.); // identity
-        m1g = glm::translate(m1g, glm::vec3(0., 0., 0.));
-        m1g = glm::rotate(m1g, rot1, zaxis); // [T]*[R]
-
-        glm::mat4 m21 = glm::mat4(1.); // identity
-        m21 = glm::translate(m21, glm::vec3(2. * Arm1.armScale, 0., 0.));
-        m21 = glm::rotate(m21, rot2, zaxis);              // [T]*[R]
-        m21 = glm::translate(m21, glm::vec3(0., 0., 2.)); // z-offset from previous arm
-
-        glm::mat4 m32 = glm::mat4(1.); // identity
-        m32 = glm::translate(m32, glm::vec3(2. * Arm2.armScale, 0., 0.));
-        m32 = glm::rotate(m32, rot3, zaxis);              // [T]*[R]
-        m32 = glm::translate(m32, glm::vec3(0., 0., 2.)); // z-offset from previous arm
-
-        Arm1.armMatrix = m1g;
-        Arm2.armMatrix = m1g * m21;
-        Arm3.armMatrix = m1g * m21 * m32;
-        //************************P5
         // change the sporadic stuff:
         Sporadic.uMode = Mode;
         Sporadic.uUseLighting = UseLighting ? 1 : 0;
@@ -4197,6 +4174,30 @@ VK_EVENT_SET:
         }
 
         // change the object projection:
+        //************************P5
+        float rot1 = (float)(2. * M_PI * Time);
+        float rot2 = 2.f * rot1;
+        float rot3 = 2.f * rot2;
+        glm::vec3 zaxis = glm::vec3(0., 0., 1.);
+
+        glm::mat4 m1g = glm::mat4(1.); // identity
+        m1g = glm::translate(m1g, glm::vec3(0., 0., 0.));
+        m1g = glm::rotate(m1g, rot1, zaxis); // [T]*[R]
+
+        glm::mat4 m21 = glm::mat4(1.); // identity
+        m21 = glm::translate(m21, glm::vec3(2. * Arm1.armScale, 0., 0.));
+        m21 = glm::rotate(m21, rot2, zaxis);              // [T]*[R]
+        m21 = glm::translate(m21, glm::vec3(0., 0., 2.)); // z-offset from previous arm
+
+        glm::mat4 m32 = glm::mat4(1.); // identity
+        m32 = glm::translate(m32, glm::vec3(2. * Arm2.armScale, 0., 0.));
+        m32 = glm::rotate(m32, rot3, zaxis);              // [T]*[R]
+        m32 = glm::translate(m32, glm::vec3(0., 0., 2.)); // z-offset from previous arm
+
+        Arm1.armMatrix = m1g;
+        Arm2.armMatrix = m1g * m21;
+        Arm3.armMatrix = m1g * m21 * m32;
+        //************************P5
 
         if (UseOrtho)
             Scene.uProjection = glm::ortho(-5.f, 5.f, -5.f, 5.f, -1000.f, 1000.f);

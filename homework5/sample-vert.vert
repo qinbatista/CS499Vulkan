@@ -56,11 +56,11 @@ layout(location = 1) in vec3 aNormal;
 layout(location = 2) in vec3 aColor;
 layout(location = 3) in vec2 aTexCoord;
 
-layout(location = 0) out vec3 vColor;
-layout(location = 1) out vec2 vTexCoord;
-layout(location = 2) out vec3 vN;
-layout(location = 3) out vec3 vL;
-layout(location = 4) out vec3 vE;
+layout(location = 4) out vec3 vColor;
+layout(location = 5) out vec2 vTexCoord;
+layout(location = 6) out vec3 vN;
+layout(location = 7) out vec3 vL;
+layout(location = 8) out vec3 vE;
 
 void main() {
     mat4 P = Scene.uProjection;
@@ -106,9 +106,11 @@ void main() {
     vec3 bVertex = aVertex;
     // do to bVertex just what the cube needs to become a robot arm:
     bVertex.x += 1.;
+    bVertex.x /= 2.;
     bVertex.x *= RobotArm.armScale;
     bVertex = vec3(RobotArm.armMatrix * vec4(bVertex, 1.));
     // now do to bVertex what the cube needed before when it was just a cube (lighting, transformation):
     //? ? ?
+    gl_Position = PVM * vec4( bVertex, 1. );
 //************************P5
 }
