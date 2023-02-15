@@ -291,14 +291,7 @@ struct vertex
     glm::vec2 texCoord;
 };
 #endif
-struct arm
-{
-    glm::mat4 armMatrix;
-    glm::vec3 armColor;
-    float armScale; // scale factor in x
-};
 
-struct arm Arm1, Arm2, Arm3;
 // ********************************
 // VULKAN-RELATED GLOBAL VARIABLES:
 // ********************************
@@ -2602,14 +2595,6 @@ Init13DescriptorSetLayouts()
     AtomsSet[0].pImmutableSamplers = (VkSampler *)nullptr;
     //************************P4
 
-    //************************P5
-    VkPushConstantRange vpcr[1];
-    vpcr[0].stageFlags = VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
-    vpcr[0].offset = 0;
-    vpcr[0].size = sizeof(struct arm);
-
-    //************************P5
-
 #ifdef CHOICES
 VkDescriptorType:
     VK_DESCRIPTOR_TYPE_SAMPLER
@@ -2662,17 +2647,6 @@ VkDescriptorType:
     vdslc4.pBindings = &AtomsSet[0];
     //************************P4
 
-    //************************P5
-    VkPipelineLayoutCreateInfo vplci;
-    vplci.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-    vplci.pNext = nullptr;
-    vplci.flags = 0;
-    vplci.setLayoutCount = 5;
-    vplci.pSetLayouts = DescriptorSetLayouts;
-    vplci.pushConstantRangeCount = 1;
-    vplci.pPushConstantRanges = vpcr;
-    //************************P5
-
     result = vkCreateDescriptorSetLayout(LogicalDevice, &vdslc0, PALLOCATOR, OUT & DescriptorSetLayouts[0]);
     REPORT("vkCreateDescriptorSetLayout - 0");
 
@@ -2689,10 +2663,6 @@ VkDescriptorType:
     result = vkCreateDescriptorSetLayout(LogicalDevice, &vdslc4, PALLOCATOR, OUT & DescriptorSetLayouts[4]);
     REPORT("vkCreateDescriptorSetLayout - 4");
     //************************P4
-
-    //************************P5
-    result = vkCreatePipelineLayout(LogicalDevice, IN & vplci, PALLOCATOR, OUT & GraphicsPipelineLayout);
-    //************************P5
 
     return result;
 }
@@ -3956,24 +3926,19 @@ VK_EVENT_SET:
         VkBuffer iBuffer = {MyJustIndexDataBuffer.buffer};
         VkDeviceSize offsets[1] = {0};
 
+        vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, buffers, offsets); // 0, 1 = firstBinding, bindingCount
+
         const uint32_t vertexCount = (int)MyVertexDataBuffer.size / sizeof(struct vertex);
+        // const uint32_t indexCount  = sizeof(JustIndexData)  / sizeof(JustIndexData[0]);
         //************************P4
-        const uint32_t instanceCount = 3;
+        const uint32_t instanceCount = NUMATOMS;
         //************************P4
         const uint32_t firstVertex = 0;
         const uint32_t firstIndex = 0;
         const uint32_t firstInstance = 0;
         const uint32_t vertexOffset = 0;
 
-        //************************P5
-        vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, buffers, offsets);
-        vkCmdPushConstants(CommandBuffers[nextImageIndex], GraphicsPipelineLayout, VK_SHADER_STAGE_ALL, 0, sizeof(struct arm), (void *)&Arm1);
         vkCmdDraw(CommandBuffers[nextImageIndex], vertexCount, instanceCount, firstVertex, firstInstance);
-        vkCmdPushConstants(CommandBuffers[nextImageIndex], GraphicsPipelineLayout, VK_SHADER_STAGE_ALL, 0, sizeof(struct arm), (void *)&Arm2);
-        vkCmdDraw(CommandBuffers[nextImageIndex], vertexCount, instanceCount, firstVertex, firstInstance);
-        vkCmdPushConstants(CommandBuffers[nextImageIndex], GraphicsPipelineLayout, VK_SHADER_STAGE_ALL, 0, sizeof(struct arm), (void *)&Arm3);
-        vkCmdDraw( CommandBuffers[nextImageIndex], vertexCount, instanceCount, firstVertex, firstInstance );
-        //************************P5
 
         vkCmdEndRenderPass(CommandBuffers[nextImageIndex]);
 
@@ -4061,9 +4026,7 @@ VK_EVENT_SET:
     // ***************************
     // RESET THE GLOBAL VARIABLES:
     // ***************************
-    struct arm Arm1;
-    struct arm Arm2;
-    struct arm Arm3;
+
     void
     Reset()
     {
@@ -4114,20 +4077,6 @@ VK_EVENT_SET:
 
         Sporadic.uMode = Mode;
         Sporadic.uUseLighting = UseLighting ? 1 : 0;
-
-        //************************P5
-        Arm1.armMatrix = glm::mat4(1.);
-        Arm1.armColor = glm::vec3(0.f, 1.f, 0.f);
-        Arm1.armScale = 6.f;
-
-        Arm2.armMatrix = glm::mat4(1.);
-        Arm2.armColor = glm::vec3(1.f, 0.f, 0.f);
-        Arm2.armScale = 4.f;
-
-        Arm3.armMatrix = glm::mat4(1.);
-        Arm3.armColor = glm::vec3(0.f, 0.f, 1.f);
-        Arm3.armScale = 2.f;
-        //************************P5
     }
 
     // *****************
@@ -4139,40 +4088,18 @@ VK_EVENT_SET:
     {
 
         //************************P4
-        Fill05DataBuffer(MyAtomsUniformBuffer, (void *)&Atoms);
-        //************************P4
+        Fill05DataBuffer(MyAtomsUniformBuffer, (void *)&Atoms); // really only need to do this once...
+                                                                //************************P4
 
-        //************************P5
-        float rot1 = (float)(2. * M_PI * Time);
-        float rot2 = 2.f * rot1;
-        float rot3 = 2.f * rot2;
-        glm::vec3 zaxis = glm::vec3(0., 0., 1.);
-
-        glm::mat4 m1g = glm::mat4(1.); // identity
-        m1g = glm::translate(m1g, glm::vec3(0., 0., 0.));
-        m1g = glm::rotate(m1g, rot1, zaxis); // [T]*[R]
-
-        glm::mat4 m21 = glm::mat4(1.); // identity
-        m21 = glm::translate(m21, glm::vec3(2. * Arm1.armScale, 0., 0.));
-        m21 = glm::rotate(m21, rot2, zaxis);              // [T]*[R]
-        m21 = glm::translate(m21, glm::vec3(0., 0., 2.)); // z-offset from previous arm
-
-        glm::mat4 m32 = glm::mat4(1.); // identity
-        m32 = glm::translate(m32, glm::vec3(2. * Arm2.armScale, 0., 0.));
-        m32 = glm::rotate(m32, rot3, zaxis);              // [T]*[R]
-        m32 = glm::translate(m32, glm::vec3(0., 0., 2.)); // z-offset from previous arm
-
-        Arm1.armMatrix = m1g;
-        Arm2.armMatrix = m1g * m21;
-        Arm3.armMatrix = m1g * m21 * m32;
-        //************************P5
         // change the sporadic stuff:
+
         Sporadic.uMode = Mode;
         Sporadic.uUseLighting = UseLighting ? 1 : 0;
         Sporadic.uNumInstances = NumInstances;
         Fill05DataBuffer(MySporadicUniformBuffer, (void *)&Sporadic);
 
         // change the scene stuff:
+
         Scene.uTime = (float)Time;
 
         // change the scene orientation:
@@ -4221,7 +4148,7 @@ VK_EVENT_SET:
 
         Object.uModel = glm::mat4(1.);
         Object.uNormal = glm::mat4(glm::inverseTranspose(glm::mat3(Scene.uSceneOrient * Object.uModel)));
-        Object.uColor = glm::vec4(0., 1., 0., 1.);
+        Object.uColor = glm::vec4( 0., 1., 0., 1. );
         Object.uShininess = 10.f;
         Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
     }

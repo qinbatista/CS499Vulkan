@@ -39,15 +39,6 @@ layout(std140, set = 4, binding = 0) uniform moleculeBuf {
 };
 //************************P4
 
-//************************P5
-layout(push_constant) uniform arm {
-    mat4 armMatrix;
-    vec3 armColor;
-    float armScale;		// scale factor in x
-} RobotArm
-
-//************************P5
-
 layout(location = 0) in vec3 aVertex;
 layout(location = 1) in vec3 aNormal;
 layout(location = 2) in vec3 aColor;
@@ -79,33 +70,30 @@ void main() {
     vec4 eyePos = vec4(0., 0., 0., 1.);					// eye position after applying the viewing matrix
     vE = normalize(eyePos.xyz - ECposition.xyz);         // vector from the point to the eye
 
-//************************P5
-    // int atomicNumber = atoms[gl_InstanceIndex].atomicNumber;
-    // vec3 position = atoms[gl_InstanceIndex].position;
-    // float radius;
-    // if(atomicNumber == 1) {
-    //     vColor = vec3(1., 1., 1.);
-    //     radius = 0.37;
-    // } else if(atomicNumber == 6) {
-    //     vColor = vec3(0., 1., 0.);
-    //     radius = 0.77;
-    // } else if(atomicNumber == 7) {
-    //     vColor = vec3(0., 0., 1.);
-    //     radius = 0.70;
-    // } else if(atomicNumber == 8) {
-    //     vColor = vec3(1., 0., 0.);
-    //     radius = 0.66;
-    // } else {
-    //     vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
-    //     radius = 1.0;
-    // }
+//************************P4
+    int atomicNumber = atoms[gl_InstanceIndex].atomicNumber;
+    vec3 position = atoms[gl_InstanceIndex].position;
+    float radius;
+    if(atomicNumber == 1) {
+        vColor = vec3(1., 1., 1.);
+        radius = 0.37;
+    } else if(atomicNumber == 6) {
+        vColor = vec3(0., 1., 0.);
+        radius = 0.77;
+    } else if(atomicNumber == 7) {
+        vColor = vec3(0., 0., 1.);
+        radius = 0.70;
+    } else if(atomicNumber == 8) {
+        vColor = vec3(1., 0., 0.);
+        radius = 0.66;
+    } else {
+        vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
+        radius = 1.0;
+    }
 
     vec3 bVertex = aVertex;
-    // do to bVertex just what the cube needs to become a robot arm:
-    bVertex.x += 1.;
-    bVertex.x *= RobotArm.armScale;
-    bVertex = vec3(RobotArm.armMatrix * vec4(bVertex, 1.));
-    // now do to bVertex what the cube needed before when it was just a cube (lighting, transformation):
-    //? ? ?
-//************************P5
+    bVertex.xyz *= 0.5*radius;
+    bVertex.xyz += position;
+    gl_Position = PVM * vec4(bVertex, 1.);
+//************************P4
 }
