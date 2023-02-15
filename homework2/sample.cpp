@@ -2805,7 +2805,7 @@ struct sceneBuf
 
 struct objectBuf
 {
-	glm::mat4 uModel;
+	glm::mat4 ;
 	glm::mat4 uNormal;
 	vec4 uColor;
 	float uShininess;
