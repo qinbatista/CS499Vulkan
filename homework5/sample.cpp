@@ -4061,9 +4061,6 @@ VK_EVENT_SET:
     // ***************************
     // RESET THE GLOBAL VARIABLES:
     // ***************************
-    struct arm Arm1;
-    struct arm Arm2;
-    struct arm Arm3;
     void
     Reset()
     {

@@ -44,9 +44,12 @@ layout(push_constant) uniform arm {
     mat4 armMatrix;
     vec3 armColor;
     float armScale;		// scale factor in x
-} RobotArm
+} RobotArm;
 
 //************************P5
+
+
+
 
 layout(location = 0) in vec3 aVertex;
 layout(location = 1) in vec3 aNormal;
