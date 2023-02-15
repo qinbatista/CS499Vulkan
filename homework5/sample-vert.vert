@@ -102,7 +102,7 @@ void main() {
     //     vColor = vec3(1., 0., 1.);	// big magenta ball to tell us something is wrong
     //     radius = 1.0;
     // }
-
+    vColor = RobotArm.armColor;
     vec3 bVertex = aVertex;
     // do to bVertex just what the cube needs to become a robot arm:
     bVertex.x += 1.;
