@@ -312,7 +312,7 @@ VkImage DepthStencilImage;
 VkImageView DepthStencilImageView;
 VkDescriptorPool DescriptorPool;
 //************************P4
-#define NUMDS 5
+#define NUMDS 3
 VkDescriptorSetLayout DescriptorSetLayouts[NUMDS];
 VkDescriptorSet DescriptorSets[NUMDS];
 //************************P4
@@ -379,7 +379,7 @@ MyBuffer MyVertexDataBuffer;
 MyBuffer MyJustIndexDataBuffer;
 MyBuffer MyJustVertexDataBuffer;
 //************************P4
-MyBuffer MyAtomsUniformBuffer; // array of atom structs
+// MyBuffer MyAtomsUniformBuffer; // array of atom structs
 //************************P4
 bool NeedToExit;  // true means the program should exit
 int NumInstances; // # of instances to render
@@ -550,12 +550,12 @@ void InitGraphics()
     Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
 
     //************************P4
-    Init05UniformBuffer(sizeof(Atoms), &MyAtomsUniformBuffer);
-    Fill05DataBuffer(MyAtomsUniformBuffer, (void *)&Atoms);
+    // Init05UniformBuffer(sizeof(Atoms), &MyAtomsUniformBuffer);
+    // Fill05DataBuffer(MyAtomsUniformBuffer, (void *)&Atoms);
     //************************P4
 
     //************************P4
-    MyVertexDataBuffer = vkuSphere(1., 20, 20);
+    // MyVertexDataBuffer = vkuSphere(1., 20, 20);
     //************************P4
 
     // Init05MyVertexDataBuffer(  sizeof(VertexData), &MyVertexDataBuffer );
@@ -2470,8 +2470,8 @@ Init13DescriptorSetPool()
     vdps[3].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
     vdps[3].descriptorCount = 1;
     //************************P4
-    vdps[4].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    vdps[4].descriptorCount = 1;
+    // vdps[4].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    // vdps[4].descriptorCount = 1;
     //************************P4
 
 #ifdef CHOICES
@@ -2594,12 +2594,12 @@ Init13DescriptorSetLayouts()
 
     //************************P4
     // DS #4:
-    VkDescriptorSetLayoutBinding AtomsSet[1];
-    AtomsSet[0].binding = 0;
-    AtomsSet[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    AtomsSet[0].descriptorCount = 1;
-    AtomsSet[0].stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
-    AtomsSet[0].pImmutableSamplers = (VkSampler *)nullptr;
+    // VkDescriptorSetLayoutBinding AtomsSet[1];
+    // AtomsSet[0].binding = 0;
+    // AtomsSet[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    // AtomsSet[0].descriptorCount = 1;
+    // AtomsSet[0].stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+    // AtomsSet[0].pImmutableSamplers = (VkSampler *)nullptr;
     //************************P4
 
     //************************P5
@@ -2654,12 +2654,12 @@ VkDescriptorType:
     vdslc3.pBindings = &TexSamplerSet[0];
 
     //************************P4
-    VkDescriptorSetLayoutCreateInfo vdslc4;
-    vdslc4.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
-    vdslc4.pNext = nullptr;
-    vdslc4.flags = 0;
-    vdslc4.bindingCount = 1;
-    vdslc4.pBindings = &AtomsSet[0];
+    // VkDescriptorSetLayoutCreateInfo vdslc4;
+    // vdslc4.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
+    // vdslc4.pNext = nullptr;
+    // vdslc4.flags = 0;
+    // vdslc4.bindingCount = 1;
+    // vdslc4.pBindings = &AtomsSet[0];
     //************************P4
 
     //************************P5
@@ -2686,8 +2686,8 @@ VkDescriptorType:
     REPORT("vkCreateDescriptorSetLayout - 3");
 
     //************************P4
-    result = vkCreateDescriptorSetLayout(LogicalDevice, &vdslc4, PALLOCATOR, OUT & DescriptorSetLayouts[4]);
-    REPORT("vkCreateDescriptorSetLayout - 4");
+    // result = vkCreateDescriptorSetLayout(LogicalDevice, &vdslc4, PALLOCATOR, OUT & DescriptorSetLayouts[4]);
+    // REPORT("vkCreateDescriptorSetLayout - 4");
     //************************P4
 
     //************************P5
@@ -2741,10 +2741,10 @@ Init13DescriptorSets()
     vdii3.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
     //************************P4
-    VkDescriptorBufferInfo vdbi4;
-    vdbi4.buffer = MyAtomsUniformBuffer.buffer;
-    vdbi4.offset = 0; // bytes
-    vdbi4.range = sizeof(Atoms);
+    // VkDescriptorBufferInfo vdbi4;
+    // vdbi4.buffer = MyAtomsUniformBuffer.buffer;
+    // vdbi4.offset = 0; // bytes
+    // vdbi4.range = sizeof(Atoms);
     //************************P4
 
     VkWriteDescriptorSet vwds0;
@@ -2801,17 +2801,17 @@ Init13DescriptorSets()
 
     //************************P4
     // ds 4:
-    VkWriteDescriptorSet vwds4;
-    vwds4.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-    vwds4.pNext = nullptr;
-    vwds4.dstSet = DescriptorSets[4];
-    vwds4.dstBinding = 0;
-    vwds4.dstArrayElement = 0;
-    vwds4.descriptorCount = 1;
-    vwds4.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    vwds4.pBufferInfo = &vdbi4;
-    vwds4.pImageInfo = (VkDescriptorImageInfo *)nullptr;
-    vwds4.pTexelBufferView = (VkBufferView *)nullptr;
+    // VkWriteDescriptorSet vwds4;
+    // vwds4.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+    // vwds4.pNext = nullptr;
+    // vwds4.dstSet = DescriptorSets[4];
+    // vwds4.dstBinding = 0;
+    // vwds4.dstArrayElement = 0;
+    // vwds4.descriptorCount = 1;
+    // vwds4.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    // vwds4.pBufferInfo = &vdbi4;
+    // vwds4.pImageInfo = (VkDescriptorImageInfo *)nullptr;
+    // vwds4.pTexelBufferView = (VkBufferView *)nullptr;
     //************************P4
 
     uint32_t copyCount = 0;
@@ -2823,7 +2823,7 @@ Init13DescriptorSets()
     vkUpdateDescriptorSets(LogicalDevice, 1, IN & vwds2, IN copyCount, (VkCopyDescriptorSet *)nullptr);
     vkUpdateDescriptorSets(LogicalDevice, 1, IN & vwds3, IN copyCount, (VkCopyDescriptorSet *)nullptr);
     //************************P4
-    vkUpdateDescriptorSets(LogicalDevice, 1, IN & vwds4, IN copyCount, (VkCopyDescriptorSet *)nullptr);
+    // vkUpdateDescriptorSets(LogicalDevice, 1, IN & vwds4, IN copyCount, (VkCopyDescriptorSet *)nullptr);
     //************************P4
 
     return VK_SUCCESS;
@@ -4140,7 +4140,7 @@ VK_EVENT_SET:
     {
 
         //************************P4
-        Fill05DataBuffer(MyAtomsUniformBuffer, (void *)&Atoms);
+        // Fill05DataBuffer(MyAtomsUniformBuffer, (void *)&Atoms);
         //************************P4
 
         // change the sporadic stuff:
