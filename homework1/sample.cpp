@@ -2665,6 +2665,7 @@ VkDescriptorType:
     result = vkCreateDescriptorSetLayout(LogicalDevice, &vdslc3, PALLOCATOR, OUT & DescriptorSetLayouts[3]);
     REPORT("vkCreateDescriptorSetLayout - 3");
 
+
     return result;
 }
 
@@ -2796,6 +2797,23 @@ Init14GraphicsPipelineLayout()
     result = vkCreatePipelineLayout(LogicalDevice, IN & vplci, PALLOCATOR, OUT & GraphicsPipelineLayout);
     REPORT("vkCreatePipelineLayout");
 
+    //************************P5
+    VkPushConstantRange vpcr[1];
+    vpcr[0].stageFlags = VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+    vpcr[0].offset = 0;
+    vpcr[0].size = sizeof(struct arm);
+
+    VkPipelineLayoutCreateInfo vplci;
+    vplci.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+    vplci.pNext = nullptr;
+    vplci.flags = 0;
+    vplci.setLayoutCount = 5;
+    vplci.pSetLayouts = DescriptorSetLayouts;
+    vplci.pushConstantRangeCount = 1;
+    vplci.pPushConstantRanges = vpcr;
+
+    result = vkCreatePipelineLayout(LogicalDevice, IN & vplci, PALLOCATOR, OUT & GraphicsPipelineLayout);
+    //************************P5
     return result;
 }
 
