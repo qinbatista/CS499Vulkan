@@ -353,7 +353,7 @@ VkCommandPool TransferCommandPool;
 VkDebugReportCallbackEXT WarningCallback;
 uint32_t Width;
 
-#include "SampleVertexData.cpp"
+// #include "SampleVertexData.cpp"
 
 // *************************************
 // APPLICATION-RELATED GLOBAL VARIABLES:
