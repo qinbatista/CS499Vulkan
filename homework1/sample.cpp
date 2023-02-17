@@ -2665,7 +2665,6 @@ VkDescriptorType:
     result = vkCreateDescriptorSetLayout(LogicalDevice, &vdslc3, PALLOCATOR, OUT & DescriptorSetLayouts[3]);
     REPORT("vkCreateDescriptorSetLayout - 3");
 
-
     return result;
 }
 
@@ -4133,8 +4132,34 @@ VK_EVENT_SET:
 
         Object.uModel = glm::mat4(1.);
         Object.uNormal = glm::mat4(glm::inverseTranspose(glm::mat3(Scene.uSceneOrient * Object.uModel)));
-        // Object.uColor = glm::vec4( 0., 1., 0., 1. );
-        // Object.uShininess = 10.f;
+        Object.uColor = glm::vec4(0., 1., 0., 1.);
+        Object.uShininess = 10.f;
+
+        //************************P5
+        float rot1 = (float)(2. * M_PI * Time);
+        float rot2 = 2.f * rot1;
+        float rot3 = 2.f * rot2;
+
+        glm::vec3 zaxis = glm::vec3(0., 0., 1.);
+
+        glm::mat4 m1g = glm::mat4(1.); // identity
+        m1g = glm::translate(m1g, glm::vec3(0., 0., 0.));
+        m1g = glm::rotate(m1g, rot1, zaxis); // [T]*[R]
+
+        glm::mat4 m21 = glm::mat4(1.); // identity
+        m21 = glm::translate(m21, glm::vec3(2. * Arm1.armScale, 0., 0.));
+        m21 = glm::rotate(m21, rot2, zaxis);              // [T]*[R]
+        m21 = glm::translate(m21, glm::vec3(0., 0., 2.)); // z-offset from previous arm
+
+        glm::mat4 m32 = glm::mat4(1.); // identity
+        m32 = glm::translate(m32, glm::vec3(2. * Arm2.armScale, 0., 0.));
+        m32 = glm::rotate(m32, rot3, zaxis);              // [T]*[R]
+        m32 = glm::translate(m32, glm::vec3(0., 0., 2.)); // z-offset from previous arm
+
+        Arm1.armMatrix = m1g;
+        Arm2.armMatrix = m1g * m21;
+        Arm3.armMatrix = m1g * m21 * m32;
+        //************************P5
         Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
     }
 
