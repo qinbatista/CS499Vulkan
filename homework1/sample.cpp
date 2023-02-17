@@ -2785,16 +2785,16 @@ Init14GraphicsPipelineLayout()
 
     VkResult result = VK_SUCCESS;
 
-    VkPipelineLayoutCreateInfo vplci;
-    vplci.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-    vplci.pNext = nullptr;
-    vplci.flags = 0;
-    vplci.setLayoutCount = 4;
-    vplci.pSetLayouts = &DescriptorSetLayouts[0];
-    vplci.pushConstantRangeCount = 0;
-    vplci.pPushConstantRanges = (VkPushConstantRange *)nullptr;
+    // VkPipelineLayoutCreateInfo vplci;
+    // vplci.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+    // vplci.pNext = nullptr;
+    // vplci.flags = 0;
+    // vplci.setLayoutCount = 4;
+    // vplci.pSetLayouts = &DescriptorSetLayouts[0];
+    // vplci.pushConstantRangeCount = 0;
+    // vplci.pPushConstantRanges = (VkPushConstantRange *)nullptr;
 
-    result = vkCreatePipelineLayout(LogicalDevice, IN & vplci, PALLOCATOR, OUT & GraphicsPipelineLayout);
+    // result = vkCreatePipelineLayout(LogicalDevice, IN & vplci, PALLOCATOR, OUT & GraphicsPipelineLayout);
     REPORT("vkCreatePipelineLayout");
 
     //************************P5
