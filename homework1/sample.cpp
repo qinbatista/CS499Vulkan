@@ -542,11 +542,11 @@ void InitGraphics()
     Init05MyVertexDataBuffer(sizeof(VertexData), &MyVertexDataBuffer);
     Fill05DataBuffer(MyVertexDataBuffer, (void *)VertexData);
 
-    Init05MyVertexDataBuffer(sizeof(JustVertexData), &MyJustVertexDataBuffer);
-    Fill05DataBuffer(MyJustVertexDataBuffer, (void *)JustVertexData);
+    // Init05MyVertexDataBuffer(sizeof(JustVertexData), &MyJustVertexDataBuffer);
+    // Fill05DataBuffer(MyJustVertexDataBuffer, (void *)JustVertexData);
 
-    Init05MyIndexDataBuffer(sizeof(JustIndexData), &MyJustIndexDataBuffer);
-    Fill05DataBuffer(MyJustIndexDataBuffer, (void *)JustIndexData);
+    // Init05MyIndexDataBuffer(sizeof(JustIndexData), &MyJustIndexDataBuffer);
+    // Fill05DataBuffer(MyJustIndexDataBuffer, (void *)JustIndexData);
 
     Init06CommandPools();
     Init06CommandBuffers();
