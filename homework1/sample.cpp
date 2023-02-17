@@ -277,11 +277,12 @@ struct objectBuf
     glm::vec4 uColor;
     float uShininess;
 };
-//************************P5Reset
+//************************P5
+struct arm
 {
     glm::mat4 armMatrix;
     glm::vec3 armColor;
-    Reset float armScale; // scale factor in x
+    float armScale; // scale factor in x
 };
 struct arm Arm1, Arm2, Arm3;
 //************************P5
