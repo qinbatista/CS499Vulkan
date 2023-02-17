@@ -3906,7 +3906,13 @@ VK_EVENT_SET:
         VkBuffer iBuffer = {MyJustIndexDataBuffer.buffer};
         VkDeviceSize offsets[1] = {0};
         //************************P5
+        const uint32_t vertexCount = (int)MyVertexDataBuffer.size / sizeof(struct arm);
+        const uint32_t instanceCount = 1;
+        const uint32_t firstVertex = 0;
+        const uint32_t firstInstance = 0;
+
         vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, buffers, offsets);
+
         vkCmdPushConstants(CommandBuffers[nextImageIndex], GraphicsPipelineLayout, VK_SHADER_STAGE_ALL, 0, sizeof(struct arm), (void *)&Arm1);
         vkCmdDraw( CommandBuffers[nextImageIndex], vertexCount, instanceCount, firstVertex, firstInstance );
         //************************P5
