@@ -3916,13 +3916,13 @@ VK_EVENT_SET:
         //     vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, buffers, offsets); // 0, 1 = firstBinding, bindingCount
         // }
 
-        const uint32_t vertexCount = sizeof(VertexData) / sizeof(VertexData[0]);
-        const uint32_t indexCount = sizeof(JustIndexData) / sizeof(JustIndexData[0]);
-        const uint32_t instanceCount = 1;
-        const uint32_t firstVertex = 0;
-        const uint32_t firstIndex = 0;
-        const uint32_t firstInstance = 0;
-        const uint32_t vertexOffset = 0;
+        // const uint32_t vertexCount = sizeof(VertexData) / sizeof(VertexData[0]);
+        // const uint32_t indexCount = sizeof(JustIndexData) / sizeof(JustIndexData[0]);
+        // const uint32_t instanceCount = 1;
+        // const uint32_t firstVertex = 0;
+        // const uint32_t firstIndex = 0;
+        // const uint32_t firstInstance = 0;
+        // const uint32_t vertexOffset = 0;
 
         // if (UseIndexBuffer)
         // {
