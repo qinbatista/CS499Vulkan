@@ -539,8 +539,8 @@ void InitGraphics()
     Init05UniformBuffer(sizeof(Object), &MyObjectUniformBuffer);
     Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
 
-    Init05MyVertexDataBuffer(sizeof(Arm1), &MyVertexDataBuffer);
-    Fill05DataBuffer(MyVertexDataBuffer, (void *)Arm1);
+    Init05MyVertexDataBuffer(sizeof(VertexData), &MyVertexDataBuffer);
+    Fill05DataBuffer(MyVertexDataBuffer, (void *)VertexData);
 
     // Init05MyVertexDataBuffer(sizeof(JustVertexData), &MyJustVertexDataBuffer);
     // Fill05DataBuffer(MyJustVertexDataBuffer, (void *)JustVertexData);
