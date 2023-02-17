@@ -569,7 +569,7 @@ void InitGraphics()
     Init13DescriptorSetLayouts();
     Init13DescriptorSets();
 
-    // Init14GraphicsVertexFragmentPipeline(ShaderModuleVertex, ShaderModuleFragment, VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, &GraphicsPipeline);
+    Init14GraphicsVertexFragmentPipeline(ShaderModuleVertex, ShaderModuleFragment, VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, &GraphicsPipeline);
 }
 
 // **********************
