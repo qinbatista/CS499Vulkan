@@ -2782,7 +2782,7 @@ Init14GraphicsPipelineLayout()
 {
     // HERE_I_AM( "Init14GraphicsPipelineLayout" );
 
-    // VkResult result = VK_SUCCESS;
+    VkResult result = VK_SUCCESS;
 
     // VkPipelineLayoutCreateInfo			vplci;
     // 	vplci.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
