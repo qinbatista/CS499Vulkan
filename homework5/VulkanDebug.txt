@@ -156,7 +156,7 @@ vkBindBufferMemory: Successful
 
 ***** Init05DataBuffer *****
 vkCreateBuffer: Successful
-Buffer vmr.size = 1280
+Buffer vmr.size = 1792
 Buffer vmr.alignment = 256
 Buffer vmr.memoryTypeBits = 0x00000e81
 
@@ -315,10 +315,10 @@ vkWaitForFences: Successful
 vkQueuePresentKHR: Successful
 Mouse button = 0; Action = 1
 Mouse button = 0; Action = 0
-Mouse button = 0; Action = 1
-Mouse button = 0; Action = 0
-Mouse button = 0; Action = 1
-Mouse button = 0; Action = 0
+Mouse button = 2; Action = 1
+Mouse button = 2; Action = 0
+Mouse button = 2; Action = 1
+Mouse button = 2; Action = 0
 Mouse button = 0; Action = 1
 Mouse button = 0; Action = 0
 Closing the GLFW window
