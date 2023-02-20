@@ -54,7 +54,7 @@ void main() {
     mat4 VM = V * SO * M;
     mat4 PVM = P * VM;
 
-    vColor = aColor;
+    vColor = armColor;
     vTexCoord = aTexCoord;
 
     vN = normalize(mat3(Object.uNormal) * aNormal);		// surface normal vector
