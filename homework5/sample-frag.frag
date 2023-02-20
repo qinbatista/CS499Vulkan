@@ -12,13 +12,13 @@ layout( std140, set = 0, binding = 0 ) uniform sporadicBuf
 	int		uUseLighting;
 	int		uNumInstances;
 } Sporadic;
-        
+
 layout( std140, set = 1, binding = 0 ) uniform sceneBuf
 {
 	mat4		uProjection;
 	mat4		uView;
 	mat4		uSceneOrient;
-	vec4		uLightPos; 
+	vec4		uLightPos;
 	vec4		uLightColor;
 	vec4		uLightKaKdKs;
 	float		uTime;
@@ -30,7 +30,7 @@ layout( std140, set = 2, binding = 0 ) uniform objectBuf
 	mat4		uNormal;
 	vec4		uColor;
 	float		uShininess;
-} Object; 
+} Object;
 
 layout( set = 3, binding = 0 ) uniform sampler2D uSampler;
 
@@ -48,19 +48,20 @@ void
 main( )
 {
 	vec3 rgb;
-	switch( Sporadic.uMode )
-	{
-		case 0:
-			rgb = vColor;
-			break;
+    rgb = vColor;
+	// switch( Sporadic.uMode )
+	// {
+	// 	case 0:
+	// 		rgb = vColor;
+	// 		break;
 
-		case 1:
-			rgb = texture( uSampler, vTexCoord ).rgb;
-			break;
+	// 	case 1:
+	// 		rgb = texture( uSampler, vTexCoord ).rgb;
+	// 		break;
 
-		default:
-			rgb = vec3( 1., 1., 0. );
-	}
+	// 	default:
+	// 		rgb = vec3( 1., 1., 0. );
+	// }
 
 	if( Sporadic.uUseLighting != 0 )
 	{
