@@ -54,7 +54,7 @@ void main() {
     mat4 VM = V * SO * M;
     mat4 PVM = P * VM;
 
-    vColor = armColor;
+    vColor = RobotArm.armColor;
     vTexCoord = aTexCoord;
 
     vN = normalize(mat3(Object.uNormal) * aNormal);		// surface normal vector
@@ -68,7 +68,7 @@ void main() {
 
     vec3 bVertex = aVertex;
     bVertex.x += 1.;
-    bVertex.x /= 2.;
+    bVertex.x /= 1.;
     bVertex.x *= (RobotArm.armScale);
     bVertex = vec3(RobotArm.armMatrix * vec4(bVertex, 1.));
 
