@@ -72,5 +72,5 @@ void main() {
     bVertex.x *= (RobotArm.armScale);
     bVertex = vec3(RobotArm.armMatrix * vec4(bVertex, 1.));
 
-    gl_Position = PVM * vec4(aVertex, 1.);
+    gl_Position = PVM * vec4(bVertex, 1.);
 }
