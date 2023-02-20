@@ -1,22 +1,20 @@
-sample.o:		sample.cpp
-			g++ -std=gnu++11 -c -I.  sample.cpp
+ALLSHADERS:	sample-vert.vert  sample-frag.frag
+		glslangValidator.exe -V sample-vert.vert  -o sample-vert.spv
+		glslangValidator.exe -V sample-frag.frag  -o sample-frag.spv
+
+sample.o:	sample.cpp
+		g++ -std=gnu++11 -c -I.  sample.cpp
 
 
-numbers.cpp:		sample.cpp
-			rm -f numbers.cpp
-			cat -n sample.cpp > numbers.cpp
-
-ALLSHADERS:		sample-vert.spv  sample-frag.spv
-
+numbers.cpp:	sample.cpp
+		rm -f numbers.cpp
+		cat -n sample.cpp > numbers.cpp
 
 sample-vert.spv:	sample-vert.vert
-			glslangValidator.exe -V sample-vert.vert  -o sample-vert.spv
+			glslangValidator -V sample-vert.vert  -o sample-vert.spv
 
 sample-frag.spv:	sample-frag.frag
-			glslangValidator.exe -V sample-frag.frag  -o sample-frag.spv
-
-shaders:		sample-vert.spv  sample-frag.spv
-
+			glslangValidator -V sample-frag.frag  -o sample-frag.spv
 
 sample-vert-dis.txt:	sample-vert.vert
 			rm -f sample-vert-dis.txt

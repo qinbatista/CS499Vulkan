@@ -1,3 +1,0 @@
-﻿  sample.cpp
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Sample.vcxproj -> Z:\CS559Vulkan\homework5\x64\Debug\Sample.exe

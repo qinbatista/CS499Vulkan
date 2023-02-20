@@ -34,7 +34,6 @@ layout( std140, set = 2, binding = 0 ) uniform objectBuf
 
 layout( set = 3, binding = 0 ) uniform sampler2D uSampler;
 
-
 layout ( location = 0 ) in vec3 vColor;
 layout ( location = 1 ) in vec2 vTexCoord;
 layout ( location = 2 ) in vec3 vN;

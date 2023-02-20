@@ -156,17 +156,7 @@ vkBindBufferMemory: Successful
 
 ***** Init05DataBuffer *****
 vkCreateBuffer: Successful
-Buffer vmr.size = 512
-Buffer vmr.alignment = 256
-Buffer vmr.memoryTypeBits = 0x00000e81
-
-***** Found given memory flag (0x00000002) and type (0x00000e81): i = 9 *****
-vkAllocateMemory: Successful
-vkBindBufferMemory: Successful
-
-***** Init05DataBuffer *****
-vkCreateBuffer: Successful
-Buffer vmr.size = 100352
+Buffer vmr.size = 1280
 Buffer vmr.alignment = 256
 Buffer vmr.memoryTypeBits = 0x00000e81
 
@@ -174,6 +164,28 @@ Buffer vmr.memoryTypeBits = 0x00000e81
 vkAllocateMemory: Successful
 vkBindBufferMemory: Successful
 InitDataBuffer: Successful
+
+***** Init05DataBuffer *****
+vkCreateBuffer: Successful
+Buffer vmr.size = 512
+Buffer vmr.alignment = 256
+Buffer vmr.memoryTypeBits = 0x00000e81
+
+***** Found given memory flag (0x00000002) and type (0x00000e81): i = 9 *****
+vkAllocateMemory: Successful
+vkBindBufferMemory: Successful
+InitDataBuffer: Successful
+
+***** Init05DataBuffer *****
+vkCreateBuffer: Successful
+Buffer vmr.size = 256
+Buffer vmr.alignment = 256
+Buffer vmr.memoryTypeBits = 0x00000e81
+
+***** Found given memory flag (0x00000002) and type (0x00000e81): i = 9 *****
+vkAllocateMemory: Successful
+vkBindBufferMemory: Successful
+Init05MyIndexDataBufferBuffer: Successful
 
 ***** Init06CommandPools *****
 vkCreateCommandPool -- Graphics: Successful
@@ -187,11 +199,11 @@ vkAllocateCommandBuffers - 2: Successful
 vkCreateSampler: Successful
 
 ***** Init07TextureBufferAndFillFromBmpFile *****
-Image size found: 1488 x 1484
+Image size found: 4032 x 3024
 
 ***** Init07TextureBuffer *****
 vkCreateImage: Successful
-Image vmr.size = 8832768
+Image vmr.size = 48771072
 Image vmr.alignment = 32
 Image vmr.memoryTypeBits = 0x00000681
 
@@ -200,12 +212,12 @@ vkAllocateMemory: Successful
 vkBindImageMemory: Successful
 Subresource Layout:
 	offset = 0
-	size = 8832768
-	rowPitch = 5952
-	arrayPitch = 8832768
-	depthPitch = 8832768
+	size = 48771072
+	rowPitch = 16128
+	arrayPitch = 48771072
+	depthPitch = 48771072
 vkCreateImage: Successful
-Texture vmr.size = 9142272
+Texture vmr.size = 49545216
 Texture vmr.alignment = 1024
 Texture vmr.memoryTypeBits = 0x00000102
 
@@ -282,7 +294,6 @@ vkCreateDescriptorSetLayout - 0: Successful
 vkCreateDescriptorSetLayout - 1: Successful
 vkCreateDescriptorSetLayout - 2: Successful
 vkCreateDescriptorSetLayout - 3: Successful
-vkCreateDescriptorSetLayout - 4: Successful
 
 ***** Init13DescriptorSets *****
 vkAllocateDescriptorSets: Successful
@@ -302,6 +313,13 @@ nextImageIndex = 1
 vkQueueSubmit: Successful
 vkWaitForFences: Successful
 vkQueuePresentKHR: Successful
-vkWaitForFences: Successful
 Mouse button = 0; Action = 1
 Mouse button = 0; Action = 0
+Mouse button = 0; Action = 1
+Mouse button = 0; Action = 0
+Mouse button = 0; Action = 1
+Mouse button = 0; Action = 0
+Mouse button = 0; Action = 1
+Mouse button = 0; Action = 0
+Closing the GLFW window
+vkWaitIdle: Successful
