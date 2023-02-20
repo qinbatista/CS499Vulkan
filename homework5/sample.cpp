@@ -3906,15 +3906,15 @@ VK_EVENT_SET:
         VkBuffer iBuffer = {MyJustIndexDataBuffer.buffer};
         VkDeviceSize offsets[1] = {0};
 
-        if (UseIndexBuffer)
-        {
-            vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, vBuffers, offsets); // 0, 1 = firstBinding, bindingCount
-            vkCmdBindIndexBuffer(CommandBuffers[nextImageIndex], iBuffer, 0, VK_INDEX_TYPE_UINT32);
-        }
-        else
-        {
-            vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, buffers, offsets); // 0, 1 = firstBinding, bindingCount
-        }
+        // if (UseIndexBuffer)
+        // {
+        //     vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, vBuffers, offsets); // 0, 1 = firstBinding, bindingCount
+        //     vkCmdBindIndexBuffer(CommandBuffers[nextImageIndex], iBuffer, 0, VK_INDEX_TYPE_UINT32);
+        // }
+        // else
+        // {
+        //     vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, buffers, offsets); // 0, 1 = firstBinding, bindingCount
+        // }
 
         const uint32_t vertexCount = sizeof(VertexData) / sizeof(VertexData[0]);
         const uint32_t indexCount = sizeof(JustIndexData) / sizeof(JustIndexData[0]);
@@ -3936,14 +3936,14 @@ VK_EVENT_SET:
         vkCmdPushConstants(CommandBuffers[nextImageIndex], GraphicsPipelineLayout, VK_SHADER_STAGE_ALL, 0, sizeof(struct arm), (void *)&Arm3);
         vkCmdDraw(CommandBuffers[nextImageIndex], vertexCount, instanceCount, firstVertex, firstInstance);
         //************************P5
-        if (UseIndexBuffer)
-        {
-            vkCmdDrawIndexed(CommandBuffers[nextImageIndex], indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
-        }
-        else
-        {
-            vkCmdDraw(CommandBuffers[nextImageIndex], vertexCount, instanceCount, firstVertex, firstInstance);
-        }
+        // if (UseIndexBuffer)
+        // {
+        //     vkCmdDrawIndexed(CommandBuffers[nextImageIndex], indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
+        // }
+        // else
+        // {
+        //     vkCmdDraw(CommandBuffers[nextImageIndex], vertexCount, instanceCount, firstVertex, firstInstance);
+        // }
 
         vkCmdEndRenderPass(CommandBuffers[nextImageIndex]);
 
