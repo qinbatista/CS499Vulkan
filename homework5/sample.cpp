@@ -2796,7 +2796,7 @@ Init14GraphicsPipelineLayout()
     // result = vkCreatePipelineLayout( LogicalDevice, IN &vplci, PALLOCATOR, OUT &GraphicsPipelineLayout );
     // REPORT( "vkCreatePipelineLayout" );
 
-    // //************************P5
+    //************************P5
     VkPushConstantRange vpcr[1];
     vpcr[0].stageFlags = VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
     vpcr[0].offset = 0;
@@ -2812,7 +2812,7 @@ Init14GraphicsPipelineLayout()
     vplci.pPushConstantRanges = vpcr;
 
     result = vkCreatePipelineLayout(LogicalDevice, IN & vplci, PALLOCATOR, OUT & GraphicsPipelineLayout);
-    // //************************P5
+    //************************P5
     return result;
 }
 
@@ -3924,6 +3924,7 @@ VK_EVENT_SET:
         const uint32_t firstIndex = 0;
         const uint32_t firstInstance = 0;
         const uint32_t vertexOffset = 0;
+        //************************P5
         vkCmdBindVertexBuffers(CommandBuffers[nextImageIndex], 0, 1, buffers, offsets);
 
         vkCmdPushConstants(CommandBuffers[nextImageIndex], GraphicsPipelineLayout, VK_SHADER_STAGE_ALL, 0, sizeof(struct arm), (void *)&Arm1);
@@ -3934,7 +3935,7 @@ VK_EVENT_SET:
 
         vkCmdPushConstants(CommandBuffers[nextImageIndex], GraphicsPipelineLayout, VK_SHADER_STAGE_ALL, 0, sizeof(struct arm), (void *)&Arm3);
         vkCmdDraw(CommandBuffers[nextImageIndex], vertexCount, instanceCount, firstVertex, firstInstance);
-
+        //************************P5
         if (UseIndexBuffer)
         {
             vkCmdDrawIndexed(CommandBuffers[nextImageIndex], indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
@@ -4064,33 +4065,20 @@ VK_EVENT_SET:
         // initialize the object stuff:
 
         Object.uShininess = 10.f;
-        //************************P5
-        float rot1 = (float)(2. * M_PI * Time);
-        float rot2 = 2.f * rot1;
-        float rot3 = 2.f * rot2;
-
-        glm::vec3 zaxis = glm::vec3(0., 0., 1.);
-
-        glm::mat4 m1g = glm::mat4(1.); // identity
-        m1g = glm::translate(m1g, glm::vec3(0., 0., 0.));
-        m1g = glm::rotate(m1g, rot1, zaxis); // [T]*[R]
-
-        glm::mat4 m21 = glm::mat4(1.); // identity
-        m21 = glm::translate(m21, glm::vec3(2. * Arm1.armScale, 0., 0.));
-        m21 = glm::rotate(m21, rot2, zaxis);              // [T]*[R]
-        m21 = glm::translate(m21, glm::vec3(0., 0., 2.)); // z-offset from previous arm
-
-        glm::mat4 m32 = glm::mat4(1.); // identity
-        m32 = glm::translate(m32, glm::vec3(2. * Arm2.armScale, 0., 0.));
-        m32 = glm::rotate(m32, rot3, zaxis);              // [T]*[R]
-        m32 = glm::translate(m32, glm::vec3(0., 0., 2.)); // z-offset from previous arm
-
-        Arm1.armMatrix = m1g;
-        Arm2.armMatrix = m1g * m21;
-        Arm3.armMatrix = m1g * m21 * m32;
-        //************************P5
 
         // initialize the sporadic stuff:
+
+        //************************P5
+        Arm1.armMatrix = glm::mat4(1.);
+        Arm1.armColor = glm::vec3(0.f, 1.f, 0.f);
+        Arm1.armScale = 6.f;
+        Arm2.armMatrix = glm::mat4(1.);
+        Arm2.armColor = glm::vec3(1.f, 0.f, 0.f);
+        Arm2.armScale = 4.f;
+        Arm3.armMatrix = glm::mat4(1.);
+        Arm3.armColor = glm::vec3(0.f, 0.f, 1.f);
+        Arm3.armScale = 2.f;
+        //************************P5
 
         Sporadic.uMode = Mode;
         Sporadic.uUseLighting = UseLighting ? 1 : 0;
@@ -4160,6 +4148,32 @@ VK_EVENT_SET:
         Object.uNormal = glm::mat4(glm::inverseTranspose(glm::mat3(Scene.uSceneOrient * Object.uModel)));
         // Object.uColor = glm::vec4( 0., 1., 0., 1. );
         // Object.uShininess = 10.f;
+
+        //************************P5
+        float rot1 = (float)(2. * M_PI * Time);
+        float rot2 = 2.f * rot1;
+        float rot3 = 2.f * rot2;
+
+        glm::vec3 zaxis = glm::vec3(0., 0., 1.);
+
+        glm::mat4 m1g = glm::mat4(1.); // identity
+        m1g = glm::translate(m1g, glm::vec3(0., 0., 0.));
+        m1g = glm::rotate(m1g, rot1, zaxis); // [T]*[R]
+
+        glm::mat4 m21 = glm::mat4(1.); // identity
+        m21 = glm::translate(m21, glm::vec3(2. * Arm1.armScale, 0., 0.));
+        m21 = glm::rotate(m21, rot2, zaxis);              // [T]*[R]
+        m21 = glm::translate(m21, glm::vec3(0., 0., 2.)); // z-offset from previous arm
+
+        glm::mat4 m32 = glm::mat4(1.); // identity
+        m32 = glm::translate(m32, glm::vec3(2. * Arm2.armScale, 0., 0.));
+        m32 = glm::rotate(m32, rot3, zaxis);              // [T]*[R]
+        m32 = glm::translate(m32, glm::vec3(0., 0., 2.)); // z-offset from previous arm
+
+        Arm1.armMatrix = m1g;
+        Arm2.armMatrix = m1g * m21;
+        Arm3.armMatrix = m1g * m21 * m32;
+        //************************P5
         Fill05DataBuffer(MyObjectUniformBuffer, (void *)&Object);
     }
 
